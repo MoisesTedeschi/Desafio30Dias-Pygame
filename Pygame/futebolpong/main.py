@@ -7,16 +7,26 @@ window = pygame.display.set_mode([1280, 720])
 title = pygame.display.set_caption("Futebol Pong")
 
 field = pygame.image.load("assets/field.png")
-window.blit(field, (0, 0))
-
 player1 = pygame.image.load("assets/player1.png")
-window.blit(player1, (50, 310))
-
 player2 = pygame.image.load("assets/player2.png")
-window.blit(player2, (1150, 310))
-
 ball = pygame.image.load("assets/ball.png")
-window.blit(ball, (617, 360))
+
+ball_x = 617
+ball_y = 337
+
+
+def move_ball():
+    global ball_x
+    global ball_y
+
+    ball_x += 1
+
+
+def draw():
+    window.blit(field, (0, 0))
+    window.blit(player1, (50, 310))
+    window.blit(player2, (1150, 310))
+    window.blit(ball, (ball_x, ball_y))
 
 
 loop = True
@@ -25,4 +35,6 @@ while loop:
         if event.type == pygame.QUIT:
             loop = False
 
+    draw()
+    move_ball()
     pygame.display.update()
